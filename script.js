@@ -43,9 +43,9 @@ function display(value){
         }
 
     }
-    if (expression.length > 2 && nextCanBeOperator){
-        bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
-    }
+    // if (expression.length > 2 && nextCanBeOperator){
+    //     bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
+    // }
     miniDisplay.textContent = expression.toString().replaceAll(",","")
 }
 
