@@ -10,7 +10,7 @@ let expression = []
 
 function display(value){
     if (value.className == "enter"){
-        if (nextCanBeOperator == false) alert("please enter a correct equasion")
+        if (nextCanBeOperator == false) alert("please enter a valid equasion")
         else{
         bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
         expression = [parseFloat(bigDisplay.textContent)]
@@ -42,12 +42,7 @@ function display(value){
     miniDisplay.textContent = expression.toString().replaceAll(",","")
 }
 
-// let test = "55*3+7-2"
-// console.log(test.split("*"))
-
-
-
-// [15 + 3 * 5 - 8]  = 82
+// simple visualization of what the code does
 // [15 + 3 * 5 - 8] => [18 * 5 - 8] => [90 - 8] => 82
 function calculate (nums){
     if (nums.length == 1) return Math.floor(nums * 10)/10
