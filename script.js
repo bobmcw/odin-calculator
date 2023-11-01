@@ -10,8 +10,8 @@ let expression = []
 
 function display(value){
     if (value.className == "enter"){
-        bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
-    // bigDisplay.textContent = eval(expression.toString().replaceAll(",",""))
+        if (nextCanBeOperator == false) alert("please enter a correct equasion")
+        else bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
     }
     //we dont want an operator to be at the beggining of the expression
     //or for 2 operators to be next to each other
@@ -46,7 +46,7 @@ function calculate (nums){
         nums.shift()
         switch(operator){
             case "+":
-                nums = nums.unshift(num1 + num2)
+                nums.unshift(num1 + num2)
                 break
             case "-":
                 nums.unshift(num1 - num2)
@@ -58,6 +58,7 @@ function calculate (nums){
                 nums.unshift(num1 / num2)
                 break
         }
+        // console.log(Object.values(nums))
+    return(calculate(Object.values(nums)))
     }
-    return(nums)
 }
