@@ -13,6 +13,14 @@ function display(value){
         if (nextCanBeOperator == false) alert("please enter a correct equasion")
         else bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
     }
+    else if (value.className == "clear") location.reload()
+    else if (value.className == "backspace"){
+        expression.pop()
+        if (expression[expression.length-2] == " ") {
+            expression.pop()
+            expression.pop()
+        }
+    }
     //we dont want an operator to be at the beggining of the expression
     //or for 2 operators to be next to each other
     else if (value.className == "operator" && nextCanBeOperator){
@@ -36,7 +44,7 @@ function display(value){
 // [15 + 3 * 5 - 8]  = 82
 // [15 + 3 * 5 - 8] => [18 * 5 - 8] => [90 - 8] => 82
 function calculate (nums){
-    if (nums.length == 1) return nums
+    if (nums.length == 1) return Math.floor(nums * 10)/10
     else{
         let num1 = parseInt(nums[0])
         let operator = nums[1]
