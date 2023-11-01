@@ -33,8 +33,15 @@ function display(value){
         nextCanBeOperator = false
     }
     else if (value.className != "operator"){
-        expression.push(value.textContent)
-        nextCanBeOperator = true
+        if (typeof(value) == "number"){
+            expression.push(value)
+            nextCanBeOperator = true
+        }
+        else{
+            expression.push(value.textContent)
+            nextCanBeOperator = true
+        }
+
     }
     if (expression.length > 2 && nextCanBeOperator){
         bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
@@ -71,3 +78,25 @@ function calculate (nums){
     return(calculate(Object.values(nums)))
     }
 }
+function handleKeys(element){
+    if (!isNaN(parseInt(element))) display(parseInt(element))
+    else if (element == "+" || element == "-" || element == "*" || element == "/") {
+    const temp = document.createElement("div")
+    temp.className = "operator"
+    temp.textContent = element
+    console.log(temp.className)
+    console.log(temp.textContent)
+    display(temp)
+    }
+    else if (element == "Backspace"){
+        const temp = document.createElement("div")
+        temp.className = "backspace"
+        display(temp)
+    }
+    else if (element == "Enter"){
+        const temp = document.createElement("div")
+        temp.className = "enter"
+        display(temp)
+    }
+}
+document.querySelector("body").addEventListener(("keydown"),(e) => handleKeys(e.key))
