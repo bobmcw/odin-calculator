@@ -11,7 +11,10 @@ let expression = []
 function display(value){
     if (value.className == "enter"){
         if (nextCanBeOperator == false) alert("please enter a correct equasion")
-        else bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
+        else{
+        bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
+        expression = [parseFloat(bigDisplay.textContent)]
+        }
     }
     else if (value.className == "clear") location.reload()
     else if (value.className == "backspace"){
@@ -33,6 +36,9 @@ function display(value){
         expression.push(value.textContent)
         nextCanBeOperator = true
     }
+    if (expression.length > 2 && nextCanBeOperator){
+        bigDisplay.textContent = calculate(expression.toString().replaceAll(",","").split(" "))
+    }
     miniDisplay.textContent = expression.toString().replaceAll(",","")
 }
 
@@ -46,9 +52,9 @@ function display(value){
 function calculate (nums){
     if (nums.length == 1) return Math.floor(nums * 10)/10
     else{
-        let num1 = parseInt(nums[0])
+        let num1 = parseFloat(nums[0])
         let operator = nums[1]
-        let num2 = parseInt(nums[2])
+        let num2 = parseFloat(nums[2])
         nums.shift()
         nums.shift()
         nums.shift()
